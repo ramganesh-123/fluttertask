@@ -10,30 +10,33 @@ class NumberGridScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final NumberController controller = Get.find();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Number Highlighter'),
-      ),
-      body: Column(
-        children: [
-          RuleSelector(
-            selectedRule: controller.selectedRule.value,
-            onRuleChange: controller.updateRule,
-          ),
-          Expanded(
-            child: Obx(() {
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 10,
-                ),
-                itemCount: controller.numbers.length,
-                itemBuilder: (context, index) {
-                  return NumberItem(number: controller.numbers[index]);
-                },
-              );
-            }),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Number Highlighter'),
+        ),
+        body: Column(
+          children: [
+            RuleSelector(
+              selectedRule: controller.selectedRule.value,
+              onRuleChange: controller.updateRule,
+            ),
+            Expanded(
+              child: Obx(() {
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 10,
+                  ),
+                  itemCount: controller.numbers.length,
+                  itemBuilder: (context, index) {
+                    return NumberItem(number: controller.numbers[index]);
+                  },
+                );
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }
